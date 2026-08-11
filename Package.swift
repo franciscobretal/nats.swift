@@ -19,6 +19,8 @@ let package = Package(
         .package(url: "https://github.com/nats-io/nkeys.swift.git", from: "0.1.2"),
         .package(url: "https://github.com/apple/swift-nio-ssl.git", from: "2.0.0"),
         .package(url: "https://github.com/Jarema/swift-nuid.git", from: "0.2.0"),
+        // Broad range so both v3 and v4 consumers can depend on this package.
+        .package(url: "https://github.com/apple/swift-crypto.git", "3.0.0"..<"5.0.0"),
     ],
     targets: [
         .target(
@@ -38,6 +40,7 @@ let package = Package(
             dependencies: [
                 "Nats",
                 .product(name: "Logging", package: "swift-log"),
+                .product(name: "Crypto", package: "swift-crypto"),
             ]),
         .target(
             name: "NatsServer",
